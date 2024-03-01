@@ -1,11 +1,22 @@
+from cryptography.fernet import Fernet
+
 psswrd = input("Input master password: ")
 
+def rightKey():
+    key = Fernet.generate_key()
+    with open("key.key", "wb") as key_file:
+        key_file.write(key)
+
+
+rightKey()
+
+
 def peek():
-    with open("passwords.txt", "a") as f:
+    with open("passwords.txt", "r") as f:
         for line in f.readlines():
             data = line.rstrip()
             user, passw = data.split("|")
-            print ("User: ", user, ", Password:", passw)
+            print("User: ", user, ", Password:", passw)
 
 def add():
     user = input("Input Username: ")
