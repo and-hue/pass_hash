@@ -1,14 +1,18 @@
 psswrd = input("Input master password: ")
 
 def peek():
-    pass
+    with open("passwords.txt", "a") as f:
+        for line in f.readlines():
+            data = line.rstrip()
+            user, passw = data.split("|")
+            print ("User: ", user, ", Password:", passw)
 
 def add():
     user = input("Input Username: ")
     pwd = input("Input Password: ")
 
     with open("passwords.txt", "a") as f:
-        f.write(user + "|" + pwd)
+        f.write(user + "|" + pwd + "\n")
     
 while True:
     mode = input("Add new password or view existing passwords (view, add)? Enter Q to quit. ").lower()
